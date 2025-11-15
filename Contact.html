@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Formulaire Clair Tailwind</title>
+  <title>Contact - Cards+</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-between bg-[#EAEAEA]"> 
@@ -92,24 +92,19 @@
     const btn = document.getElementById("EnvyBtn");
 
     btn.addEventListener("click", function() {
-      // Récupération des valeurs
       const name = document.getElementById("name").value;
       const email = document.getElementById("email").value;
       const message = document.getElementById("message").value;
 
-      // Vérification des champs
       if (!name || !email || !message) {
         alert("Veuillez remplir tous les champs !");
         return;
       }
 
-      // Date et heure actuelles
       const timestamp = new Date().toLocaleString();
 
-      // Préparer l'objet à stocker
       const formData = { name, email, message, timestamp };
 
-      // Récupérer les soumissions précédentes
       let submissions = JSON.parse(localStorage.getItem("submissions")) || [];
       submissions.push(formData);
       localStorage.setItem("submissions", JSON.stringify(submissions));
@@ -117,7 +112,6 @@
       // Confirmation
       alert(`Merci ! Vos données ont été enregistrées le ${timestamp}`);
 
-      // Réinitialiser le formulaire
       document.querySelector("form").reset();
     });
   </script>
