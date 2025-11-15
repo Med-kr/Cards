@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulaire Clair Tailwind</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between bg-[#EAEAEA]"> 
+
+  <header class="bg-white shadow-md sticky top-0 z-50 w-full">
+    <nav class="flex items-center justify-between px-6 py-3">
+      <a href="index.html">
+        <img src="images/logo.png" alt="Logo du site" class="w-20 md:w-32" />
+      </a>
+
+      <div class="md:hidden">
+        <input type="checkbox" id="menu" class="hidden peer" />
+        <label for="menu" class="cursor-pointer">
+          <img src="images/menu.png" alt="Menu" class="w-7 h-7" />
+        </label>
+
+        <menu class="hidden peer-checked:flex absolute top-14 right-4 bg-white/95 text-gray-900 rounded-lg shadow-lg flex-col gap-3 p-4 w-56">
+          <label for="menu" class="text-right cursor-pointer text-lg flex justify-center items-center">✖</label>
+
+          <a href="index.html" class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white font-semibold rounded-[20px_0_20px_0]">
+            Accueil
+          </a>
+          <a href="Flashcards.html" class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white font-semibold rounded-[20px_0_20px_0]">
+            Flashcards
+          </a>
+          <a href="Quiz.html" class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white font-semibold rounded-[20px_0_20px_0]">
+            Quiz
+          </a>
+          <a href="#Contact" class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white font-semibold rounded-[20px_0_20px_0]">
+            Contact
+          </a>
+        </menu>
+      </div>
+
+      <menu class="hidden md:flex items-center gap-6 font-semibold">
+        <a href="index.html" class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white rounded-[20px_0_20px_0]">Accueil</a>
+        <a href="Flashcards.html" class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white rounded-[20px_0_20px_0]">Flashcards</a>
+        <a href="Quiz.html" class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white rounded-[20px_0_20px_0]">Quiz</a>
+        <a href="#Contact" class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white rounded-[20px_0_20px_0]">Contact</a>
+      </menu>
+    </nav>
+  </header>
+
+<h1 class="text-5xl font-extrabold bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] bg-clip-text text-transparent mb-2">Cards+</h1>
+
+  <div class="mt-12 mb-auto flex-grow relative w-[400px] p-8 rounded-2xl bg-white text-gray-800 flex flex-col gap-6 border-2 border-transparent 
+      [background:linear-gradient(white,white)_padding-box,linear-gradient(145deg,transparent_35%,#e81cff,#7F6FEA,#40c9ff)_border-box] shadow-lg">
+
+    <form class="flex flex-col gap-6">
+      <div class="flex flex-col gap-2">
+        <label for="name" class="text-gray-600 font-semibold text-xs uppercase tracking-wide">Name</label>
+        <input type="text" id="name" name="name" required placeholder="Enter your name" class="w-full p-3 rounded-lg bg-white border border-gray-300 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#000]" />
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label for="email" class="text-gray-600 font-semibold text-xs uppercase tracking-wide">Email</label>
+        <input type="email" id="email" name="email" required placeholder="example@email.com" class="w-full p-3 rounded-lg bg-white border border-gray-300 text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#000]" />
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label for="message" class="text-gray-600 font-semibold text-xs uppercase tracking-wide">How Can We Help You?</label>
+        <textarea id="message" name="message" rows="5" required placeholder="Write your message..." class="w-full p-3 rounded-lg bg-white border border-gray-300 text-gray-800 placeholder-gray-400 resize-none focus:outline-none focus:border-[#000]"></textarea>
+      </div>
+
+      <button type="button" id="EnvyBtn" class="mt-2 w-2/5 mx-auto bg-white border border-gray-300 text-gray-700 font-semibold px-4 py-3 rounded-md hover:bg-gradient-to-r hover:from-[#00C6FF] hover:via-[#7F6FEA] hover:to-[#FF00C3] hover:text-white hover:border-transparent active:scale-95 transition-all duration-300 ease-out">
+        Envoyer
+      </button>
+    </form>
+  </div>
+
+  <footer class="bg-white w-full text-center text-gray-600 py-4 mt-8">
+      <div class="max-w-4xl mx-auto px-4">
+        <p class="font-bold text-3xl bg-gradient-to-r from-[#00C6FF] via-[#9B4DFF] to-[#FF00C3] bg-clip-text text-transparent">
+          Cards+
+        </p>
+        <p class="text-xs max-w-lg mx-auto mb-1">
+          Application web de révision interactive - Apprenez, mémorisez et testez vos connaissances 🎓
+        </p>
+        <p class="text-xs">
+          © 2025 Cards+. Tous droits réservés. | Réalisé avec par Med_kr
+        </p>
+      </div>
+    </footer>
+
+  <script>
+    const btn = document.getElementById("EnvyBtn");
+
+    btn.addEventListener("click", function() {
+      // Récupération des valeurs
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const message = document.getElementById("message").value;
+
+      // Vérification des champs
+      if (!name || !email || !message) {
+        alert("Veuillez remplir tous les champs !");
+        return;
+      }
+
+      // Date et heure actuelles
+      const timestamp = new Date().toLocaleString();
+
+      // Préparer l'objet à stocker
+      const formData = { name, email, message, timestamp };
+
+      // Récupérer les soumissions précédentes
+      let submissions = JSON.parse(localStorage.getItem("submissions")) || [];
+      submissions.push(formData);
+      localStorage.setItem("submissions", JSON.stringify(submissions));
+
+      // Confirmation
+      alert(`Merci ! Vos données ont été enregistrées le ${timestamp}`);
+
+      // Réinitialiser le formulaire
+      document.querySelector("form").reset();
+    });
+  </script>
+
+</body>
+</html>
