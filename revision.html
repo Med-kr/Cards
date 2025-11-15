@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cards+ Révision</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      /* --- Début des Styles CSS --- */
+      
+      body {
+        background-color: #f7f7f9; 
+        font-family: "Poppins", sans-serif;
+      }
+
+      /* Dégradés clés */
+      .gradient-magenta-blue {
+          background-image: linear-gradient(to right, #FF00C3, #00C6FF);
+      }
+      .gradient-blue-magenta {
+          background-image: linear-gradient(to right, #00C6FF, #FF00C3);
+      }
+      /* Nouveau dégradé pour le logo/titre si nécessaire, ou réutiliser */
+      .gradient-logo {
+          background-image: linear-gradient(to right, #FF00C3, #00C6FF); /* Magenta vers Bleu */
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent; /* Rend le texte transparent pour laisser voir le dégradé */
+      }
+      
+      /* Styles du bouton de navigation (Précédent/Suivant) */
+      .btn-nav-shadow {
+        box-shadow: 0 3px 0 #1b2a41;
+        transition: transform 0.1s ease, box-shadow 0.1s ease;
+      }
+      .btn-nav-shadow:active {
+        transform: translateY(3px);
+        box-shadow: 0 0px 0 #1b2a41;
+      }
+
+      /* --- Styles pour l'effet Flip 3D --- */
+      .flip-container {
+        perspective: 1000px; /* Donne la perspective pour l'effet 3D */
+        height: 300px; /* Hauteur fixe pour la démo */
+      }
+      .flipper {
+        transition: 0.6s;
+        transform-style: preserve-3d;
+        position: relative;
+        height: 100%;
+        width: 100%;
+      }
+      /* Fait pivoter la carte sur l'axe Y */
+      .flip-container.flipped .flipper {
+        transform: rotateY(180deg);
+      }
+      .front, .back {
+        backface-visibility: hidden; /* Cache l'arrière de la carte lorsque non visible */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      /* Positionne le dos après le retournement */
+      .back {
+        transform: rotateY(180deg);
+      }
+      /* Style des faces de la carte */
+      .card-face {
+          border-radius: 1.5rem; /* rounded-3xl */
+          padding: 2.5rem 2rem;
+          color: white;
+          text-align: center;
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+      }
+      /* --- Fin des Styles CSS --- */
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+<header class="bg-white shadow-md sticky top-0 z-10">
+    <div class="max-w-7xl mx-auto px-4 py-3 h-16 flex items-center justify-between relative">
+        <a href="Flashcards.html" class="text-gray-600 font-medium flex items-center space-x-2 z-10">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            <span class="hidden sm:inline">Retour aux collections</span>
+        </a>
+        
+        <a href="index.html" class="absolute left-1/2 -translate-x-1/2 flex items-center text-lg font-bold z-0">
+            <span class="text-3xl font-extrabold gradient-logo">Cards+</span>
+        </a>
+    </div>
+</header>
+
+<main class="max-w-md mx-auto px-4 py-8 flex-grow w-full">
+    
+    <section class="text-center mb-8">
+        <h1 class="text-4xl font-extrabold mb-2" style="color: #000000;">Chargement...</h1>
+        <p class="text-lg text-gray-600 font-semibold mb-6">Carte <span id="card-index">0</span> / <span id="card-total">0</span></p>
+        
+        <div id="flashcard" class="flip-container mb-12 cursor-pointer">
+            <div class="flipper">
+                
+                <div class="front card-face gradient-magenta-blue shadow-lg">
+                    <p class="text-2xl font-bold mb-4">Question</p>
+                    <p id="card-question-text" class="text-xl font-medium mb-8">
+                        Chargement de la question...
+                    </p>
+                    <div class="flex items-center text-sm font-semibold opacity-80 mt-auto">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                        <span>Cliquez pour voir la réponse</span>
+                    </div>
+                </div>
+                <div class="back card-face gradient-blue-magenta shadow-lg">
+                    <p class="text-2xl font-bold mb-4">Réponse</p>
+                    <p id="card-response-text" class="text-xl font-medium mb-8">
+                        Chargement de la réponse...
+                    </p>
+                    <div class="flex items-center text-sm font-semibold opacity-80 mt-auto">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"></path></svg>
+                        <span>Cliquez pour retourner</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="flex justify-between space-x-4">
+            <button id="btn-prev" class="btn-nav-shadow flex items-center justify-center bg-white text-gray-800 font-semibold py-3 rounded-lg w-full max-w-[150px] border border-gray-300">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                <span>Précédent</span>
+            </button>
+            <button id="btn-next" class="btn-nav-shadow flex items-center justify-center bg-black text-white font-semibold py-3 rounded-lg w-full max-w-[150px] border border-black">
+                <span>Suivant</span>
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </button>
+        </div>
+        
+    </section>
+
+</main>
+<footer class="bg-white w-full text-center text-gray-600 py-4 mt-8">
+      <div class="max-w-4xl mx-auto px-4">
+        <p
+          class="font-bold text-3xl bg-gradient-to-r from-[#00C6FF] via-[#9B4DFF] to-[#FF00C3] bg-clip-text text-transparent"
+        >
+          Cards+
+        </p>
+        <p class="text-xs max-w-lg mx-auto mb-1">
+          Application web de révision interactive - Apprenez, mémorisez et
+          testez vos connaissances 🎓
+        </p>
+        <p class="text-xs">
+          © 2025 Cards+. Tous droits réservés. | Réalisé avec par Med_kr
+        </p>
+      </div>
+    </footer>
+
+
+<script>
+    const STORAGE_KEY = 'cardsPlusCollections';
+    
+    // NOUVEAU : Fonctions de chargement pour lire le localStorage
+    function loadCollections() {
+        try {
+            const data = localStorage.getItem(STORAGE_KEY);
+            const defaultCollections = [
+                { id: 'html', name: 'HTML', cards: [{q: '<span>Balise pour le titre principal?</span>', r: '<span>&lt;h1&gt;</span>'}, {q: '<span>Balise pour un lien?</span>', r: '<span>&lt;a&gt;</span>'}] },
+                { id: 'css', name: 'Css', cards: [{q: '<span>Propriété pour la couleur de fond?</span>', r: '<span>background-color</span>'}, {q: '<span>Sélecteur d\'ID?</span>', r: '<span>#id</span>'}] },
+                { id: 'js', name: 'JavaScript', cards: [{q: '<span>Fonction pour afficher un message?</span>', r: '<span>alert()</span>'}, {q: '<span>Mot-clé pour déclarer une variable constante?</span>', r: '<span>const</span>'}] }
+            ];
+            return data ? JSON.parse(data) : defaultCollections;
+        } catch (e) {
+            console.error("Erreur lors du chargement de localStorage:", e);
+            return []; // Retourne vide si erreur
+        }
+    }
+
+    // NOUVEAU : Fonction pour lire l'ID de collection dans l'URL
+    function getCollectionIdFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('id');
+    }
+
+    let currentCardIndex = 0;
+    let flashcardsData = []; // Les données seront chargées ici
+    let totalCards = 0;
+
+    const flashcardElement = document.getElementById('flashcard');
+    const collectionTitleElement = document.querySelector('h1'); // Ajout pour le titre
+    const questionTextElement = document.getElementById('card-question-text');
+    const responseTextElement = document.getElementById('card-response-text');
+    const cardIndexElement = document.getElementById('card-index');
+    const cardTotalElement = document.getElementById('card-total');
+    const prevButton = document.getElementById('btn-prev');
+    const nextButton = document.getElementById('btn-next');
+
+    // Mettre à jour la carte et la progression affichées
+    function updateCard() {
+        if (totalCards === 0) return;
+
+        const card = flashcardsData[currentCardIndex];
+        
+        // Mettre à jour les textes (utilise innerHTML pour afficher les balises enregistrées)
+        questionTextElement.innerHTML = card.q;
+        responseTextElement.innerHTML = card.r;
+        
+        // Mettre à jour l'indicateur de progression
+        cardIndexElement.textContent = currentCardIndex + 1;
+        
+        // Assurer que la carte est sur la question après le changement
+        if (flashcardElement.classList.contains('flipped')) {
+            flashcardElement.classList.remove('flipped');
+        }
+        
+        // Gérer l'état des boutons de navigation (désactivé si début/fin)
+        prevButton.disabled = currentCardIndex === 0;
+        nextButton.disabled = currentCardIndex === totalCards - 1;
+        
+        // Styles visuels des boutons
+        if (currentCardIndex === 0) {
+            prevButton.classList.remove('bg-white', 'text-gray-800', 'border-gray-300', 'btn-nav-shadow');
+            prevButton.classList.add('bg-gray-100', 'text-gray-400', 'border-gray-200');
+            prevButton.style.boxShadow = 'none'; 
+        } else {
+            prevButton.classList.add('bg-white', 'text-gray-800', 'border-gray-300', 'btn-nav-shadow');
+            prevButton.classList.remove('bg-gray-100', 'text-gray-400', 'border-gray-200');
+            prevButton.style.boxShadow = '';
+        }
+
+        if (currentCardIndex === totalCards - 1) {
+            nextButton.classList.remove('bg-black', 'text-white', 'border-black', 'btn-nav-shadow');
+            nextButton.classList.add('bg-gray-700', 'text-gray-400', 'border-gray-600');
+            nextButton.style.boxShadow = 'none'; 
+        } else {
+            nextButton.classList.add('bg-black', 'text-white', 'border-black', 'btn-nav-shadow');
+            nextButton.classList.remove('bg-gray-700', 'text-gray-400', 'border-gray-600');
+            nextButton.style.boxShadow = '';
+        }
+    }
+
+    // Fonction pour retourner la carte
+    function flipCard() {
+        flashcardElement.classList.toggle('flipped');
+    }
+
+    // Fonction pour passer à la carte précédente
+    function prevCard() {
+        if (currentCardIndex > 0) {
+            currentCardIndex--;
+            updateCard();
+        }
+    }
+
+    // Fonction pour passer à la carte suivante
+    function nextCard() {
+        if (currentCardIndex < totalCards - 1) {
+            currentCardIndex++;
+            updateCard();
+        }
+    }
+
+    // Initialisation
+    document.addEventListener('DOMContentLoaded', () => {
+        const collectionId = getCollectionIdFromUrl();
+        const collections = loadCollections();
+        const currentCollection = collections.find(c => c.id === collectionId);
+
+        if (currentCollection && currentCollection.cards.length > 0) {
+            // 1. Charger les cartes et le total
+            flashcardsData = currentCollection.cards;
+            totalCards = flashcardsData.length;
+            
+            // 2. Mettre à jour le titre H1 avec le nom de la collection
+            collectionTitleElement.textContent = currentCollection.name;
+            
+            // 3. Initialiser l'affichage et les événements
+            cardTotalElement.textContent = totalCards;
+            flashcardElement.addEventListener('click', flipCard);
+            prevButton.addEventListener('click', prevCard);
+            nextButton.addEventListener('click', nextCard);
+            
+            updateCard(); // Affiche la première carte
+            
+        } else {
+            // Gérer le cas où la collection n'est pas trouvée ou est vide
+            alert("⚠️ Collection introuvable ou vide. Vous allez être redirigé vers l'accueil.");
+            // Délai de redirection pour que l'utilisateur puisse lire le message
+            setTimeout(() => {
+                window.location.href = 'index.html'; 
+            }, 50);
+        }
+    });
+</script>
+</body>
+</html>
