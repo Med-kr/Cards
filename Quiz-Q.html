@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cards+ Quiz - Question</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        background-color: #f7f7f9; 
+        font-family: "Poppins", sans-serif;
+      }
+      .gradient-logo {
+          background-image: linear-gradient(to right, #FF00C3, #00C6FF);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+      }
+      .gradient-question-card {
+          background-image: linear-gradient(to right, #7F6FEA, #FF00C3, #00C6FF); /* Dégradé élargi pour plus de dynamique */
+          min-height: 200px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+      }
+      .btn-valide {
+        box-shadow: 0 4px 0 #1b2a41;
+        transition: transform 0.1s ease, box-shadow 0.1s ease;
+      }
+      .btn-valide:active {
+        transform: translateY(4px);
+        box-shadow: 0 0px 0 #1b2a41;
+      }
+      /* Barre de progression stylisée */
+      #progress-bar {
+          height: 8px;
+          background-color: #e0e0e0;
+          border-radius: 4px;
+          overflow: hidden;
+      }
+      #progress-fill {
+          height: 100%;
+          width: 0%;
+          background-image: linear-gradient(to right, #00C6FF, #FF00C3);
+          transition: width 0.3s ease-in-out;
+      }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+<header class="bg-white shadow-md sticky top-0 z-10">
+    <div class="max-w-7xl mx-auto px-4 py-3 h-16 flex items-center justify-between relative">
+        <a href="Quiz.html" class="text-gray-600 font-medium flex items-center space-x-2 z-10">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            <span class="hidden sm:inline">Retour Au Quiz</span>
+        </a>
+        <a href="#" class="absolute left-1/2 -translate-x-1/2 flex items-center text-lg font-bold z-0">
+            <span class="text-3xl font-extrabold gradient-logo">Cards+</span>
+        </a>
+    </div>
+</header>
+
+
+<main class="max-w-md mx-auto px-4 py-8 flex-grow w-full">
+    
+    <section class="mb-8">
+        <h1 id="quiz-title" class="text-3xl font-extrabold text-gray-800 mb-4">Quiz HTML - niveau 1</h1>
+        
+        <div class="flex justify-between items-center mb-4">
+            <p id="score-display" class="text-lg font-semibold text-gray-600">Score: 0 / 0</p>
+        </div>
+
+        <div id="progress-bar" class="mb-8">
+            <div id="progress-fill"></div>
+        </div>
+
+        <p id="question-indicator" class="text-lg font-semibold text-gray-800 mb-6">Question 1 / 4</p>
+
+        <div class="gradient-question-card p-0.5 rounded-2xl shadow-xl mb-8">
+            <div class="bg-white rounded-2xl p-6 w-full h-full flex flex-col justify-center items-center">
+                <p id="question-text" class="text-xl font-bold text-gray-800 mb-6">
+                    Que signifie HTML ?
+                </p>
+                
+                <input type="text" id="user-answer" placeholder="Votre réponse..." 
+                       class="w-full input-on-gradient p-3 border border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-blue-500 mb-6">
+
+                <button id="btn-validate" class="btn-valide w-full bg-black text-white font-semibold py-3 rounded-lg shadow-lg hover:bg-gray-800 transition">
+                    Valide
+                </button>
+            </div>
+        </div>
+
+        <div id="feedback" class="hidden p-4 rounded-lg text-center font-semibold mb-4"></div>
+        <button id="btn-next-question" class="hidden btn-valide w-full bg-blue-600 text-white font-semibold py-3 rounded-lg shadow-lg hover:bg-blue-700 transition">
+            Question Suivante
+        </button>
+        
+    </section>
+
+</main>
+
+<footer class="bg-white text-center text-gray-600 py-4 mt-8 shadow-inner">
+    <p class="text-base font-bold text-gray-800 gradient-logo">Cards+</p>
+    <p class="text-xs max-w-md mx-auto mb-1">Application web de révision interactive – Apprenez, mémorisez et testez vos connaissances facilement 🎓</p>
+    <p class="text-xs"> © 2025 EstimaCrédit. Tous droits réservés. | Réalisé avec par [Med_kr]</p>
+</footer>
+
+
+<script>
+    const allQuizData = {
+        "html-niveau-1": {
+            title: "Quiz HTML - niveau 1",
+            questions: [
+                { q: "Que signifie HTML ?", a: "HyperText Markup Language" },
+                { q: "Quelle balise utilise-t-on pour le titre principal d'une page ?", a: "<h1>" },
+                { q: "Quelle balise crée un lien hypertexte ?", a: "<a>" }
+            ]
+        },
+        "css-niveau-1": {
+            title: "Quiz CSS - niveau 1",
+            questions: [
+                { q: "Que signifie CSS ?", a: "Cascading Style Sheets" },
+                { q: "Quelle propriété change la couleur du texte ?", a: "color" },
+                { q: "Comment sélectionne-t-on un élément avec l'ID 'header' ?", a: "#header" },
+                { q: "Quelle propriété change la couleur de fond ?", a: "background-color" },
+                { q: "Quelle valeur de 'display' permet de placer les éléments les uns à côté des autres ?", a: "inline-block" }
+            ]
+        },
+        "javascript-niveau-1": {
+            title: "Quiz JavaScript - niveau 1",
+            questions: [
+                { q: "Quel mot-clé déclare une variable constante ?", a: "const" },
+                { q: "Comment afficher un message dans la console ?", a: "console.log()" },
+                { q: "Quel opérateur vérifie l'égalité de valeur ET de type ?", a: "===" },
+                { q: "Quelle méthode arrête l'exécution de la boucle en cours ?", a: "break" }
+            ]
+        },
+        "java-niveau-1": {
+            title: "Quiz Java - niveau 1",
+            questions: [
+                { q: "Quelle est la méthode d'entrée principale pour une application Java ?", a: "main" },
+                { q: "Quel mot-clé est utilisé pour créer une instance d'une classe ?", a: "new" },
+                { q: "Comment déclare-t-on une chaîne de caractères ?", a: "String" }
+            ]
+        }
+    };
+
+    // 2. Variables de gestion de l'état
+    let currentQuizId = '';
+    let currentQuizData = null;
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let totalQuestions = 0;
+
+    // 3. Références DOM
+    const quizTitle = document.getElementById('quiz-title');
+    const scoreDisplay = document.getElementById('score-display');
+    const questionIndicator = document.getElementById('question-indicator');
+    const questionText = document.getElementById('question-text');
+    const userAnswerInput = document.getElementById('user-answer');
+    const btnValidate = document.getElementById('btn-validate');
+    const btnNextQuestion = document.getElementById('btn-next-question');
+    const feedback = document.getElementById('feedback');
+    const progressFill = document.getElementById('progress-fill');
+
+    // 4. Fonctions de base
+
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    function loadQuiz() {
+        currentQuizId = getQueryParam('id') || 'html-niveau-1'; // Par défaut si ID manquant
+        currentQuizData = allQuizData[currentQuizId];
+
+        if (!currentQuizData) {
+            quizTitle.textContent = "Quiz non trouvé!";
+            return;
+        }
+
+        totalQuestions = currentQuizData.questions.length;
+        quizTitle.textContent = currentQuizData.title;
+        
+        displayQuestion();
+        updateScoreDisplay();
+    }
+
+    function displayQuestion() {
+        if (currentQuestionIndex >= totalQuestions) {
+            showResults();
+            return;
+        }
+
+        const question = currentQuizData.questions[currentQuestionIndex];
+        
+        // Réinitialisation des éléments
+        userAnswerInput.value = '';
+        userAnswerInput.disabled = false;
+        btnValidate.style.display = 'block';
+        btnNextQuestion.style.display = 'none';
+        feedback.style.display = 'none';
+        feedback.className = 'p-4 rounded-lg text-center font-semibold mb-4';
+
+        // Affichage
+        questionIndicator.textContent = `Question ${currentQuestionIndex + 1} / ${totalQuestions}`;
+        questionText.textContent = question.q;
+        updateProgressBar();
+    }
+
+    function updateProgressBar() {
+        const percentage = (currentQuestionIndex / totalQuestions) * 100;
+        progressFill.style.width = `${percentage}%`;
+    }
+
+    function updateScoreDisplay() {
+        scoreDisplay.textContent = `Score: ${score} / ${currentQuestionIndex}`;
+    }
+
+    function checkAnswer() {
+        const userAnswer = userAnswerInput.value.trim().toLowerCase();
+        const correctAnswer = currentQuizData.questions[currentQuestionIndex].a.trim().toLowerCase();
+        
+        userAnswerInput.disabled = true;
+        btnValidate.style.display = 'none';
+        btnNextQuestion.style.display = 'block';
+        feedback.style.display = 'block';
+
+        if (userAnswer === correctAnswer) {
+            score++;
+            feedback.textContent = `✅ Correct !`;
+            feedback.classList.add('bg-green-100', 'text-green-700');
+        } else {
+            feedback.textContent = `❌ Faux. La réponse était : "${currentQuizData.questions[currentQuestionIndex].a}"`;
+            feedback.classList.add('bg-red-100', 'text-red-700');
+        }
+        
+        updateScoreDisplay();
+    }
+
+    function nextQuestion() {
+        currentQuestionIndex++;
+        displayQuestion();
+    }
+
+    function showResults() {
+        updateProgressBar(); // Mettre la barre à 100%
+        questionIndicator.style.display = 'none';
+        
+        questionText.textContent = "Quiz terminé !";
+        userAnswerInput.style.display = 'none';
+        btnValidate.style.display = 'none';
+        btnNextQuestion.style.display = 'none';
+        
+        feedback.style.display = 'block';
+        feedback.className = 'p-4 rounded-lg text-center font-extrabold mb-4';
+        feedback.classList.add('bg-yellow-100', 'text-yellow-800');
+        feedback.innerHTML = `🌟 Votre Score Final: <span class="text-3xl">${score} / ${totalQuestions}</span> 🌟`;
+    }
+
+
+    // 5. Initialisation
+    document.addEventListener('DOMContentLoaded', () => {
+        loadQuiz();
+        btnValidate.addEventListener('click', checkAnswer);
+        btnNextQuestion.addEventListener('click', nextQuestion);
+    });
+</script>
+</body>
+</html>
