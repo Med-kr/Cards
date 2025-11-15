@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cards+ Quiz - Question</title>
+    <title>Quiz - Question - Cards+</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -18,7 +18,7 @@
           color: transparent;
       }
       .gradient-question-card {
-          background-image: linear-gradient(to right, #7F6FEA, #FF00C3, #00C6FF); /* Dégradé élargi pour plus de dynamique */
+          background-image: linear-gradient(to right, #7F6FEA, #FF00C3, #00C6FF); 
           min-height: 200px;
           display: flex;
           flex-direction: column;
@@ -30,11 +30,11 @@
         box-shadow: 0 4px 0 #1b2a41;
         transition: transform 0.1s ease, box-shadow 0.1s ease;
       }
+        
       .btn-valide:active {
         transform: translateY(4px);
         box-shadow: 0 0px 0 #1b2a41;
       }
-      /* Barre de progression stylisée */
       #progress-bar {
           height: 8px;
           background-color: #e0e0e0;
@@ -149,14 +149,12 @@
         }
     };
 
-    // 2. Variables de gestion de l'état
     let currentQuizId = '';
     let currentQuizData = null;
     let currentQuestionIndex = 0;
     let score = 0;
     let totalQuestions = 0;
 
-    // 3. Références DOM
     const quizTitle = document.getElementById('quiz-title');
     const scoreDisplay = document.getElementById('score-display');
     const questionIndicator = document.getElementById('question-indicator');
@@ -167,7 +165,6 @@
     const feedback = document.getElementById('feedback');
     const progressFill = document.getElementById('progress-fill');
 
-    // 4. Fonctions de base
 
     function getQueryParam(param) {
         const urlParams = new URLSearchParams(window.location.search);
@@ -175,7 +172,7 @@
     }
 
     function loadQuiz() {
-        currentQuizId = getQueryParam('id') || 'html-niveau-1'; // Par défaut si ID manquant
+        currentQuizId = getQueryParam('id') || 'html-niveau-1'; 
         currentQuizData = allQuizData[currentQuizId];
 
         if (!currentQuizData) {
@@ -198,7 +195,6 @@
 
         const question = currentQuizData.questions[currentQuestionIndex];
         
-        // Réinitialisation des éléments
         userAnswerInput.value = '';
         userAnswerInput.disabled = false;
         btnValidate.style.display = 'block';
@@ -206,7 +202,6 @@
         feedback.style.display = 'none';
         feedback.className = 'p-4 rounded-lg text-center font-semibold mb-4';
 
-        // Affichage
         questionIndicator.textContent = `Question ${currentQuestionIndex + 1} / ${totalQuestions}`;
         questionText.textContent = question.q;
         updateProgressBar();
@@ -248,7 +243,7 @@
     }
 
     function showResults() {
-        updateProgressBar(); // Mettre la barre à 100%
+        updateProgressBar(); 
         questionIndicator.style.display = 'none';
         
         questionText.textContent = "Quiz terminé !";
@@ -263,7 +258,6 @@
     }
 
 
-    // 5. Initialisation
     document.addEventListener('DOMContentLoaded', () => {
         loadQuiz();
         btnValidate.addEventListener('click', checkAnswer);
