@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cards+ Quiz</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background-color: #EAEAEA;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .gradient-logo {
+      background-image: linear-gradient(to right, #00C6FF, #9B4DFF, #FF00C3);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .nav-link {
+      transition: all 0.2s ease;
+      padding: 0.5rem 1rem;
+      font-weight: 600;
+      border-radius: 9999px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .nav-link:not(.active) {
+      background-color: #f3f4f6;
+      color: #4b5563;
+    }
+
+    .nav-link.active,
+    .nav-link:hover {
+      background-color: #FF00C3;
+      color: white;
+      box-shadow: 0 4px 6px -1px rgba(255, 0, 195, 0.3), 0 2px 4px -2px rgba(255, 0, 195, 0.2);
+    }
+
+    .quiz-card-gradient {
+      background-image: linear-gradient(to right, #00C6FF, #7F6FEA, #FF00C3);
+      color: white;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .quiz-card-gradient:hover {
+      transform: translateY(-4px);
+    }
+
+    .btn-quiz-start {
+      background-color: #0d1b2a;
+      color: white;
+      font-weight: 600;
+      padding: 0.75rem;
+      border-radius: 9999px;
+      transition: background-color 0.2s ease;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    .btn-quiz-start:hover {
+      background-color: #1b2a41;
+    }
+  </style>
+</head>
+
+<body class="flex flex-col min-h-screen">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+      <nav class="flex items-center justify-between px-6 py-3">
+        <a href="index.html">
+          <img src="images/logo.png" alt="Logo du site" class="w-30 md:w-32" />
+        </a>
+
+        <!------------------------------------------------------------------ Mobile MENU ------------------------------------------------------------------>
+        <div class="md:hidden">
+          <input type="checkbox" id="menu" class="hidden peer" />
+          <label for="menu" class="cursor-pointer">
+            <img src="images/menu.png" alt="Menu" class="w-7 h-7" />
+          </label>
+
+          <menu
+            class="hidden peer-checked:flex absolute top-14 right-4 bg-white/95 text-gray-900 rounded-lg shadow-lg flex-col gap-3 p-4 w-56"
+          >
+            <label
+              for="menu"
+              class="text-right cursor-pointer text-lg flex justify-center items-center"
+              >✖</label
+            >
+
+            <a
+              href="index.html"
+              class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white font-semibold rounded-[20px_0_20px_0]"
+            >
+              Accueil
+            </a>
+            <a
+              href="Flashcards.html"
+              class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white font-semibold rounded-[20px_0_20px_0]"
+            >
+              Flashcards
+            </a>
+            <a
+              href="#Quiz"
+              class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white font-semibold rounded-[20px_0_20px_0]"
+            >
+              Quiz
+            </a>
+            <a
+              href="Contact.html"
+              class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white font-semibold rounded-[20px_0_20px_0]"
+            >
+              Contact
+            </a>
+          </menu>
+        </div>
+
+        <!------------------------------------------------------------------ Desktop MENU ------------------------------------------------------------------>
+        <menu class="hidden md:flex items-center gap-6 font-semibold">
+          <a
+            href="index.html"
+            class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white rounded-[20px_0_20px_0]"
+          >
+            Accueil
+          </a>
+          <a
+            href="Flashcards.html"
+            class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white rounded-[20px_0_20px_0]"
+          >
+            Flashcards
+          </a>
+          <a
+            href="#Quiz"
+            class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white rounded-[20px_0_20px_0]"
+          >
+            Quiz
+          </a>
+          <a
+            href="Contact.html"
+            class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white rounded-[20px_0_20px_0]"
+          >
+            Contact
+          </a>
+        </menu>
+      </nav>
+    </header>
+
+  <!---------------------- MAIN -------------------------->
+  <main class="max-w-xl mx-auto px-4 py-8 flex-grow">
+
+    <div class="text-center mb-10">
+<h1 class="text-5xl font-extrabold bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] bg-clip-text text-transparent mb-2">Cards+</h1>      <h2 class="text-4xl font-extrabold text-gray-800">Quiz</h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+      <div class="quiz-card-gradient">
+        <h3 class="text-xl font-bold mb-1">Quiz HTML - niveau 1</h3>
+        <p class="text-sm opacity-90 mb-4">3 questions</p>
+        <a href="Quiz-Q.html?id=html-niveau-1">
+          <button class="btn-quiz-start">Commencer</button>
+        </a>
+      </div>
+
+      <div class="quiz-card-gradient">
+        <h3 class="text-xl font-bold mb-1">Quiz CSS - niveau 1</h3>
+        <p class="text-sm opacity-90 mb-4">5 questions</p>
+        <a href="Quiz-Q.html?id=css-niveau-1">
+          <button class="btn-quiz-start">Commencer</button>
+        </a>
+      </div>
+
+      <div class="quiz-card-gradient">
+        <h3 class="text-xl font-bold mb-1">Quiz JavaScript - niveau 1</h3>
+        <p class="text-sm opacity-90 mb-4">4 questions</p>
+        <a href="Quiz-Q.html?id=javascript-niveau-1">
+          <button class="btn-quiz-start">Commencer</button>
+        </a>
+      </div>
+
+      <div class="quiz-card-gradient">
+        <h3 class="text-xl font-bold mb-1">Quiz Java - niveau 1</h3>
+        <p class="text-sm opacity-90 mb-4">3 questions</p>
+        <a href="Quiz-Q.html?id=java-niveau-1">
+          <button class="btn-quiz-start">Commencer</button>
+        </a>
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!---------------------- FOOTER -------------------------->
+  <footer class="bg-white w-full text-center text-gray-600 py-4 mt-8">
+  <div class="max-w-4xl mx-auto px-4">
+    <p class="font-bold text-3xl bg-gradient-to-r from-[#00C6FF] via-[#9B4DFF] to-[#FF00C3] bg-clip-text text-transparent">
+      Cards+
+    </p>
+    <p class="text-xs max-w-lg mx-auto mb-1">
+      Application web de révision interactive - Apprenez, mémorisez et testez vos connaissances 🎓
+    </p>
+    <p class="text-xs">
+      © 2025 Cards+. Tous droits réservés. | Réalisé avec par Med_kr
+    </p>
+  </div>
+</footer>
+
+</body>
+
+</html>
