@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cards+ Accueil</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/output.css" />
+
+    <!------------------------------------------------------------------ STYLE ------------------------------------------------------------------>
+
+    <style>
+      body {
+        background-color: #eaeaea;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .nav-link {
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-link:hover {
+        background-color: #d6e0f0;
+        transform: scale(1.05);
+      }
+
+      .gradient-logo {
+        background: linear-gradient(90deg, #00c6ff, #9b4dff, #ff00c3);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .apropos-bg {
+        background-image: url("images/Arrier.jpeg");
+        background-size: cover;
+        background-position: center;
+        min-height: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        border-radius: 1rem;
+      }
+
+      .apropos-text-container {
+        background-color: rgba(255, 255, 255, 0.9);
+        border: 1px solid #e0e0e0;
+      }
+    </style>
+  </head>
+
+  <body class="flex flex-col min-h-screen">
+    <!DOCTYPE html>
+    <html lang="fr">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cards+ Accueil</title>
+
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+          rel="stylesheet"
+        />
+        <link rel="stylesheet" href="src/output.css" />
+
+        <!------------------------------------------------------------------ STYLE ------------------------------------------------------------------>
+
+        <style>
+          body {
+            background-color: #eaeaea;
+            font-family: "Poppins", sans-serif;
+          }
+
+          .nav-link {
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          }
+
+          .nav-link:hover {
+            background-color: #d6e0f0;
+            transform: scale(1.05);
+          }
+
+          .gradient-logo {
+            background: linear-gradient(90deg, #00c6ff, #9b4dff, #ff00c3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+
+          .apropos-bg {
+            background-image: url("images/Arrier.jpeg");
+            background-size: cover;
+            background-position: center;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            border-radius: 1rem;
+          }
+
+          .apropos-text-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #e0e0e0;
+          }
+        </style>
+      </head>
+
+      <body class="flex flex-col min-h-screen">
+        <header class="bg-white shadow-md sticky top-0 z-50">
+          <nav class="flex items-center justify-between px-6 py-3">
+            <a href="index.html">
+              <img
+                src="images/logo.png"
+                alt="Logo du site"
+                class="w-20 md:w-32"
+              />
+            </a>
+
+            <!------------------------------------------------------------------ Mobile MENU ------------------------------------------------------------------>
+            <div class="md:hidden">
+              <input type="checkbox" id="menu" class="hidden peer" />
+              <label for="menu" class="cursor-pointer">
+                <img src="images/menu.png" alt="Menu" class="w-7 h-7" />
+              </label>
+
+              <menu
+                class="hidden peer-checked:flex absolute top-14 right-4 bg-white/95 text-gray-900 rounded-lg shadow-lg flex-col gap-3 p-4 w-56"
+              >
+                <label
+                  for="menu"
+                  class="text-right cursor-pointer text-lg flex justify-center items-center"
+                  >✖</label
+                >
+
+                <a
+                  href="#Accueil"
+                  class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white font-semibold rounded-[20px_0_20px_0]"
+                >
+                  Accueil
+                </a>
+                <a
+                  href="Flashcards.html"
+                  class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white font-semibold rounded-[20px_0_20px_0]"
+                >
+                  Flashcards
+                </a>
+                <a
+                  href="Quiz.html"
+                  class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white font-semibold rounded-[20px_0_20px_0]"
+                >
+                  Quiz
+                </a>
+                <a
+                  href="Contact.html"
+                  class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white font-semibold rounded-[20px_0_20px_0]"
+                >
+                  Contact
+                </a>
+              </menu>
+            </div>
+
+            <!------------------------------------------------------------------ Desktop MENU ------------------------------------------------------------------>
+            <menu class="hidden md:flex items-center gap-6 font-semibold">
+              <a
+                href="#Accueil"
+                class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white rounded-[20px_0_20px_0]"
+              >
+                Accueil
+              </a>
+              <a
+                href="Flashcards.html"
+                class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white rounded-[20px_0_20px_0]"
+              >
+                Flashcards
+              </a>
+              <a
+                href="Quiz.html"
+                class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white rounded-[20px_0_20px_0]"
+              >
+                Quiz
+              </a>
+              <a
+                href="Contact.html"
+                class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white rounded-[20px_0_20px_0]"
+              >
+                Contact
+              </a>
+            </menu>
+          </nav>
+        </header>
+
+        <!------------------------------------------------------------------ MAIN CONTENT ------------------------------------------------------------------>
+        <div class="max-w-4xl mx-auto px-4 py-8 w-full">
+          <div class="text-center mb-8">
+            <img
+              src="images/logo-e.png"
+              alt="Logo de l'application Cards+"
+              class="w-50 h-40 mx-auto"
+            />
+          </div>
+
+          <div class="apropos-bg mb-8">
+            <div
+              class="apropos-text-container rounded-xl shadow-xl p-6 max-w-2xl mx-auto"
+            >
+              <h2 class="text-4xl font-bold text-gray-800 mb-3 text-center">
+                À propos de
+                <span class="gradient-logo">Cards+</span>
+              </h2>
+              <div
+                class="relative z-10 text-gray-700 space-y-4 text-center sm:text-left"
+              >
+                <p>
+                  Cards+ est une application web interactive d'apprentissage qui
+                  aide les étudiants et autodidactes à **mémoriser et réviser
+                  efficacement** grâce à des flashcards et quiz intelligents.
+                </p>
+                <p>
+                  Elle permet de **créer des collections de cartes**, **tester
+                  ses connaissances**, et **suivre sa progression** dans une
+                  interface simple, moderne et responsive.
+                </p>
+                <p class="font-semibold text-gray-800">
+                  Son but : rendre l'apprentissage plus vivant, rapide et
+                  motivant.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!------------------------------------------------------------------ FLASHCARDS + QUIZ ------------------------------------------------------------------>
+          <div class="grid md:grid-cols-2 gap-6 mb-8">
+            <div
+              class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition"
+            >
+              <div class="flex items-center space-x-3 mb-4">
+                <div
+                  class="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center"
+                >
+                  <img src="images/card.png" alt="Icône Flashcard" />
+                </div>
+                <h3 class="text-5xl font-bold gradient-logo">FlashCards</h3>
+              </div>
+              <p class="text-gray-600 mb-6">
+                Créez et révisez<br />vos collections de Cartes
+              </p>
+              <a href="Flashcards.html"
+                ><button
+                  class="w-full bg-black text-white py-3 rounded-full font-semibold hover:bg-gray-800 transition"
+                >
+                  Accéder aux FlashCards
+                </button></a
+              >
+            </div>
+
+            <div
+              class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition"
+            >
+              <div class="flex items-center space-x-3 mb-4">
+                <div
+                  class="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center"
+                >
+                  <img src="images/quiz.png" alt="Icône Quiz" />
+                </div>
+                <h3 class="text-5xl font-bold gradient-logo">Quiz</h3>
+              </div>
+              <p class="text-gray-600 mb-6">
+                Testez vos connaissances<br />avec des quiz interactifs
+              </p>
+              <a href="Quiz.html"
+                ><button
+                  class="w-full bg-black text-white py-3 rounded-full font-semibold hover:bg-gray-800 transition"
+                >
+                  Accéder aux Quiz
+                </button></a
+              >
+            </div>
+          </div>
+
+          <!------------------------------------------------------------------ STATISTIQUES ------------------------------------------------------------------>
+          <section class="bg-white rounded-2xl shadow-lg p-6">
+            <div class="flex items-center space-x-3 mb-6">
+              <div
+                class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center"
+              >
+                <img src="images/bar-graph.png" alt="Icône Graphique" />
+              </div>
+              <h3 class="text-5xl font-bold gradient-logo">Statistiques</h3>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4 text-center">
+              <div
+                class="rounded-xl p-4 bg-gray-50 border border-gray-100 shadow-md"
+              >
+                <div class="text-3xl font-extrabold gradient-logo mb-1">10</div>
+                <div class="text-sm font-semibold text-gray-700">
+                  Collections disponibles
+                </div>
+              </div>
+
+              <div
+                class="rounded-xl p-4 bg-gray-50 border border-gray-100 shadow-md"
+              >
+                <div class="text-3xl font-extrabold gradient-logo mb-1">10</div>
+                <div class="text-sm font-semibold text-gray-700">
+                  Quiz disponibles
+                </div>
+              </div>
+
+              <div
+                class="rounded-xl p-4 bg-gray-50 border border-gray-100 shadow-md"
+              >
+                <div class="text-3xl font-extrabold gradient-logo mb-1">
+                  100%
+                </div>
+                <div class="text-sm font-semibold text-gray-700">Gratuit</div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!------------------------------------------------------------------ FOOTER ------------------------------------------------------------------>
+
+        <footer class="bg-white w-full text-center text-gray-600 py-4 mt-8">
+          <div class="max-w-4xl mx-auto px-4">
+            <p
+              class="font-bold text-3xl bg-gradient-to-r from-[#00C6FF] via-[#9B4DFF] to-[#FF00C3] bg-clip-text text-transparent"
+            >
+              Cards+
+            </p>
+            <p class="text-xs max-w-lg mx-auto mb-1">
+              Application web de révision interactive - Apprenez, mémorisez et
+              testez vos connaissances 🎓
+            </p>
+            <p class="text-xs">
+              © 2025 Cards+. Tous droits réservés. | Réalisé avec par Med_kr
+            </p>
+          </div>
+        </footer>
+      </body>
+    </html>
+  </body>
+</html>
