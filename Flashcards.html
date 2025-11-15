@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cards+ Flashcards - Création & Collections</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!------------------------------------------------ STYLES------------------------------------------------>
+    <style>
+      body {
+        background-color: #f7f7f9;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .text-pink-mag {
+        color: #ff00c3;
+      }
+      .text-blue-vif {
+        color: #00c6ff;
+      }
+
+      .card-shadow-soft {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05),
+          0 0 10px rgba(150, 150, 255, 0.1);
+      }
+
+      .gradient-blue-pink {
+        background-image: linear-gradient(to right, #00c6ff, #ff00c3);
+      }
+
+      .gradient-purple-pink {
+        background-image: linear-gradient(to right, #7f6fea, #ff00c3);
+      }
+
+      .input-on-gradient {
+        border: 1px solid white;
+        background-color: white;
+        border-radius: 0.5rem;
+        padding: 0.75rem 1rem;
+        width: 100%;
+        color: #333;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        font-size: 1rem;
+        outline: none;
+      }
+      .input-on-gradient::placeholder {
+        color: #9ca3af;
+      }
+
+      .btn-black-shadow {
+        box-shadow: 0 4px 0 #1b2a41;
+        transition: transform 0.1s ease, box-shadow 0.1s ease;
+      }
+      .btn-black-shadow:active {
+        transform: translateY(4px);
+        box-shadow: 0 0px 0 #1b2a41;
+      }
+
+      .section-header-styled {
+        padding: 0.5rem 2rem;
+        border-radius: 9999px;
+        max-width: fit-content;
+        margin: 0 auto 1.5rem;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #333;
+        background-color: #f7f7f9;
+        border: 1px solid;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      }
+
+      #create-header {
+        border-color: #ff00c3;
+      }
+      #add-header {
+        border-color: #7f6fea;
+      }
+      #collections-header {
+        border-color: #00c6ff;
+      }
+
+      .btn-delete-collection {
+        transition: color 0.2s;
+      }
+      .btn-delete-collection:hover {
+        color: #ff00c3;
+      }
+    </style>
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <!------------------------------------------------HEADER------------------------------------------------>
+
+    <header class="bg-white shadow-md sticky top-0 z-50 w-full">
+      <nav class="flex items-center justify-between px-6 py-3">
+        <a href="index.html">
+          <img src="images/logo.png" alt="Logo du site" class="w-20 md:w-32" />
+        </a>
+
+        <div class="md:hidden">
+          <input type="checkbox" id="menu" class="hidden peer" />
+          <label for="menu" class="cursor-pointer">
+            <img src="images/menu.png" alt="Menu" class="w-7 h-7" />
+          </label>
+
+          <menu
+            class="hidden peer-checked:flex absolute top-14 right-4 bg-white/95 text-gray-900 rounded-lg shadow-lg flex-col gap-3 p-4 w-56"
+          >
+            <label
+              for="menu"
+              class="text-right cursor-pointer text-lg flex justify-center items-center"
+              >✖</label
+            >
+
+            <a
+              href="index.html"
+              class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white font-semibold rounded-[20px_0_20px_0]"
+            >
+              Accueil
+            </a>
+            <a
+              href="Flashcards.html"
+              class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white font-semibold rounded-[20px_0_20px_0]"
+            >
+              Flashcards
+            </a>
+            <a
+              href="Quiz.html"
+              class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white font-semibold rounded-[20px_0_20px_0]"
+            >
+              Quiz
+            </a>
+            <a
+              href="Contact.html"
+              class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white font-semibold rounded-[20px_0_20px_0]"
+            >
+              Contact
+            </a>
+          </menu>
+        </div>
+
+        <menu class="hidden md:flex items-center gap-6 font-semibold">
+          <a
+            href="index.html"
+            class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white rounded-[20px_0_20px_0]"
+            >Accueil</a
+          >
+          <a
+            href="Flashcards.html"
+            class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white rounded-[20px_0_20px_0]"
+            >Flashcards</a
+          >
+          <a
+            href="Quiz.html"
+            class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white rounded-[20px_0_20px_0]"
+            >Quiz</a
+          >
+          <a
+            href="Contact.html"
+            class="nav-link px-4 py-2 bg-gradient-to-r from-[#00C6FF] via-[#7F6FEA] to-[#FF00C3] text-white rounded-[20px_0_20px_0]"
+            >Contact</a
+          >
+        </menu>
+      </nav>
+    </header>
+
+    <!------------------------------------------------ MAIN ------------------------------------------------>
+
+    <main class="max-w-xl mx-auto px-4 py-8 flex-grow">
+      <section class="mb-8">
+        <h2 id="create-header" class="section-header-styled">
+          Créer une collection
+        </h2>
+
+        <div
+          class="gradient-blue-pink card-shadow-soft p-6 rounded-2xl space-y-4"
+        >
+          <label for="collection-name" class="block text-white font-medium"
+            >Organisez vos cartes par thématique</label
+          >
+
+          <input
+            type="text"
+            id="collection-name"
+            placeholder="Nom de collection"
+            class="input-on-gradient"
+          />
+
+          <button
+            type="button"
+            id="btn-create"
+            class="btn-black-shadow w-full bg-black text-white font-semibold py-3 rounded-lg shadow-lg flex items-center justify-center space-x-2"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 4v16m8-8H4"
+              ></path>
+            </svg>
+            <span>Créer la collection</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 id="add-header" class="section-header-styled">Ajouter une carte</h2>
+
+        <div
+          class="gradient-purple-pink card-shadow-soft p-6 rounded-2xl space-y-4"
+        >
+          <label
+            for="card-collection-select"
+            class="block text-white font-medium"
+            >Créez une nouvelle flashcard</label
+          >
+
+          <div class="relative">
+            <select
+              id="card-collection-select"
+              class="input-on-gradient appearance-none"
+            >
+              <option value="" disabled selected>
+                Sélectionner une collection
+              </option>
+            </select>
+            <div
+              class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-black"
+            >
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                <path
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                  fill-rule="evenodd"
+                ></path>
+              </svg>
+            </div>
+          </div>
+
+          <input
+            type="text"
+            id="card-question"
+            placeholder="Question"
+            class="input-on-gradient"
+          />
+
+          <input
+            type="text"
+            id="card-response"
+            placeholder="Reponse"
+            class="input-on-gradient"
+          />
+
+          <button
+            type="button"
+            id="btn-add-card"
+            class="btn-black-shadow w-full bg-black text-white font-semibold py-3 rounded-lg shadow-lg mt-6"
+          >
+            Enregistrer la carte
+          </button>
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 id="collections-header" class="section-header-styled">
+          Mes Collections
+        </h2>
+
+        <div id="collections-list" class="space-y-6"></div>
+      </section>
+    </main>
+
+    <footer class="bg-white w-full text-center text-gray-600 py-4 mt-8">
+      <div class="max-w-4xl mx-auto px-4">
+        <p
+          class="font-bold text-3xl bg-gradient-to-r from-[#00C6FF] via-[#9B4DFF] to-[#FF00C3] bg-clip-text text-transparent"
+        >
+          Cards+
+        </p>
+        <p class="text-xs max-w-lg mx-auto mb-1">
+          Application web de révision interactive - Apprenez, mémorisez et
+          testez vos connaissances 🎓
+        </p>
+        <p class="text-xs">
+          © 2025 Cards+. Tous droits réservés. | Réalisé avec par Med_kr
+        </p>
+      </div>
+    </footer>
+
+    <!------------------------------------------------ SCRIPT ------------------------------------------------>
+
+    <script>
+      const STORAGE_KEY = "cardsPlusCollections";
+
+      const defaultCollections = [
+        {
+          id: "html",
+          name: "HTML",
+          cards: [
+            { q: "Balise pour le titre principal?", r: "<h1>" },
+            { q: "Balise pour un lien?", r: "<a>" },
+          ],
+        },
+        {
+          id: "css",
+          name: "Css",
+          cards: [
+            { q: "Propriété pour la couleur de fond?", r: "background-color" },
+            { q: "Sélecteur d'ID?", r: "#id" },
+          ],
+        },
+        {
+          id: "js",
+          name: "JavaScript",
+          cards: [
+            { q: "Fonction pour afficher un message?", r: "alert()" },
+            { q: "Mot-clé pour déclarer une variable constante?", r: "const" },
+          ],
+        },
+        {
+          id: "java",
+          name: "Java",
+          cards: [
+            { q: "Mot-clé pour déclarer une classe?", r: "class" },
+            {
+              q: "Méthode d'entrée principale?",
+              r: "public static void main(String[] args)",
+            },
+          ],
+        },
+      ];
+
+      function loadCollections() {
+        let collections;
+        let needsUpdate = false;
+
+        try {
+          const data = localStorage.getItem(STORAGE_KEY);
+          collections = data ? JSON.parse(data) : [...defaultCollections];
+        } catch (e) {
+          console.error("Erreur lors du chargement de localStorage:", e);
+          collections = [...defaultCollections];
+        }
+
+        defaultCollections.forEach((defaultCol) => {
+          if (!collections.some((col) => col.id === defaultCol.id)) {
+            collections.push(defaultCol);
+            needsUpdate = true;
+          }
+        });
+
+        if (needsUpdate) {
+          console.log(
+            "Mise à jour des collections: ajout des valeurs par défaut manquantes."
+          );
+          saveCollections(collections);
+        }
+
+        return collections;
+      }
+
+      function saveCollections(collections) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(collections));
+        } catch (e) {
+          console.error("Erreur lors de la sauvegarde de localStorage:", e);
+        }
+      }
+
+      function renderCollections() {
+        const collections = loadCollections();
+        const listContainer = document.getElementById("collections-list");
+        const selectElement = document.getElementById("card-collection-select");
+
+        if (!listContainer || !selectElement) return;
+
+        listContainer.innerHTML = "";
+        selectElement.innerHTML =
+          '<option value="" disabled selected>Sélectionner une collection</option>';
+
+        collections.forEach((collection) => {
+          const cardCount = collection.cards ? collection.cards.length : 0;
+          const collectionId = collection.id;
+
+          const collectionHtml = `
+                <div class="gradient-blue-pink p-0.5 rounded-xl card-shadow-soft" data-collection-id="${collectionId}">
+                    <div class="bg-white rounded-xl p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-lg font-bold text-gray-800">${collection.name}</h3>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-sm text-gray-500">${cardCount} cartes</span>
+                                <button type="button" class="text-gray-400 btn-delete-collection" data-collection-id="${collectionId}" title="Supprimer la collection">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-black-shadow w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 btn-review" data-collection-id="${collectionId}">
+                            Réviser
+                        </button>
+                    </div>
+                </div>
+            `;
+          listContainer.insertAdjacentHTML("beforeend", collectionHtml);
+
+          const option = document.createElement("option");
+          option.value = collectionId;
+          option.textContent = collection.name;
+          selectElement.appendChild(option);
+        });
+
+        attachEventListeners();
+      }
+
+      function attachEventListeners() {
+        document
+          .querySelectorAll(".btn-delete-collection")
+          .forEach((button) => {
+            button.addEventListener("click", (e) => {
+              const collectionId =
+                e.currentTarget.getAttribute("data-collection-id");
+              deleteCollection(collectionId);
+            });
+          });
+
+        document.querySelectorAll(".btn-review").forEach((button) => {
+          button.addEventListener("click", (e) => {
+            const collectionId =
+              e.currentTarget.getAttribute("data-collection-id");
+            window.location.href = `revision.html?id=${collectionId}`;
+          });
+        });
+      }
+
+      function createCollection() {
+        const nameInput = document.getElementById("collection-name");
+        const collectionName = nameInput.value.trim();
+
+        if (!collectionName) {
+          alert("⚠️ Veuillez donner un nom à la collection.");
+          return;
+        }
+
+        const collections = loadCollections();
+        const baseId = collectionName
+          .toLowerCase()
+          .replace(/\s+/g, "-")
+          .replace(/[^\w-]+/g, "");
+        let newId = baseId;
+        let count = 1;
+        while (collections.some((c) => c.id === newId)) {
+          newId = `${baseId}-${count++}`;
+        }
+
+        const newCollection = {
+          id: newId,
+          name: collectionName,
+          cards: [],
+        };
+
+        collections.push(newCollection);
+        saveCollections(collections);
+        nameInput.value = "";
+        alert(`✅ Collection "${collectionName}" créée et enregistrée !`);
+        renderCollections();
+      }
+
+      function deleteCollection(id) {
+        const collections = loadCollections();
+        const index = collections.findIndex((c) => c.id === id);
+
+        if (
+          index > -1 &&
+          confirm(
+            `Êtes-vous sûr de vouloir supprimer la collection "${collections[index].name}" et ses ${collections[index].cards.length} cartes ?`
+          )
+        ) {
+          collections.splice(index, 1);
+          saveCollections(collections);
+          alert(`Collection supprimée.`);
+          renderCollections();
+        }
+      }
+
+      function addCard() {
+        const selectElement = document.getElementById("card-collection-select");
+        const questionInput = document.getElementById("card-question");
+        const responseInput = document.getElementById("card-response");
+
+        const collectionId = selectElement.value;
+        const question = `<span>${questionInput.value.trim()}</span>`;
+        const response = `<span>${responseInput.value.trim()}</span>`;
+
+        if (!collectionId) {
+          alert("⚠️ Veuillez sélectionner une collection.");
+          return;
+        }
+        if (!question || !response) {
+          alert("⚠️ Veuillez remplir la Question et la Réponse de la carte.");
+          return;
+        }
+
+        const collections = loadCollections();
+        const collectionIndex = collections.findIndex(
+          (c) => c.id === collectionId
+        );
+
+        if (collectionIndex > -1) {
+          collections[collectionIndex].cards.push({ q: question, r: response });
+          saveCollections(collections);
+
+          questionInput.value = "";
+          responseInput.value = "";
+
+          alert(
+            `➕ Carte ajoutée à "${collections[collectionIndex].name}" et enregistrée !`
+          );
+          renderCollections();
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        renderCollections();
+
+        document
+          .getElementById("btn-create")
+          .addEventListener("click", createCollection);
+        document
+          .getElementById("btn-add-card")
+          .addEventListener("click", addCard);
+      });
+    </script>
+  </body>
+</html>
